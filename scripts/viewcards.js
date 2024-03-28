@@ -30,5 +30,10 @@ for (let i = 0; i < cards.length; i++) {
         location.reload();
     })
 
+    function updateCard() {
+        card.title = titleText.textContent;
+        card.to = title;
+    }
+
     cardList.appendChild(cardView);
 }
