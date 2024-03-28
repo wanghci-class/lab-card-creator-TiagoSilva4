@@ -1,28 +1,35 @@
-const preview = document.getElementById("preview");
+document.getElementById("preview-btn").addEventListener("click", function(event) {
+    var toValue = document.getElementById("to").value;
+    var fromValue = document.getElementById("from").value;
+    var titleValue = document.getElementById("title").value;
+    var subtitleValue = document.getElementById("subtitle").value;
+    var messageValue = document.getElementById("message").value;
 
-preview.addEventListener('click', () => {
-    document.querySelector('.title-text').textContent = document.getElementById('title').value;
-    document.querySelector('.subtitle-text').textContent = document.getElementById('subtitle').value;
-    document.querySelector('.to-text').textContent = document.getElementById('to').value;
-    document.querySelector('.message-text').textContent = document.getElementById('message').value;
-    document.querySelector('.from-text').textContent = document.getElementById('from').value;
+    document.querySelector(".to-text").textContent = toValue;
+    document.querySelector(".from-text").textContent = fromValue;
+    document.querySelector(".title-text").textContent = titleValue;
+    document.querySelector(".subtitle-text").textContent = subtitleValue;
+    document.querySelector(".message-text").textContent = messageValue;
 });
 
-const save = document.getElementById("submit");
+document.getElementById("save-btn").addEventListener("click", function(event) {
+    // event.preventDefault();
 
-save.addEventListener('click', () => {
-    if (localStorage.getItem("cards") == null || localStorage.getItem("cards") == "") {
-        var cards = [];
-        localStorage.setItem("cards", cards);
+    var cards = localStorage.getItem("cards");
+    if (cards === null) {
+        cards = [];
     } else {
-        var cards = JSON.parse(localStorage.getItem("cards"));
+        cards = JSON.parse(cards);
     }
-    var currCard = new Object();
-    currCard.to = document.getElementById('to').value;
-    currCard.from = document.getElementById('from').value;
-    currCard.title = "title", document.getElementById('title').value;
-    currCard.subtitle = "subtitle", document.getElementById('subtitle').value;
-    currCard.message = "message", document.getElementById('message').value;
-    cards.push(currCard);
+
+    var currentCard = {
+        to: document.getElementById("to").value,
+        from: document.getElementById("from").value,
+        title: document.getElementById("title").value,
+        subtitle: document.getElementById("subtitle").value,
+        message: document.getElementById("message").value
+    };
+
+    cards.push(currentCard);
     localStorage.setItem("cards", JSON.stringify(cards));
 });
