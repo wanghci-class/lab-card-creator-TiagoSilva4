@@ -4,7 +4,6 @@ let cardList = document.querySelector("#card-list");
 
 for (let i = 0; i < cards.length; i++) {
     let card = cards[i];
-    console.log(card);
 
     let cardView = template.content.cloneNode(true);
 
@@ -24,9 +23,8 @@ for (let i = 0; i < cards.length; i++) {
     fromText.textContent = card.from;
 
     let deleteBtn = cardView.querySelector(".delete-btn");
-    
+
     deleteBtn.addEventListener("click", function () {
-        console.log(i);
         cards.splice(i, 1);
         localStorage.setItem("cards", JSON.stringify(cards));
         location.reload();
